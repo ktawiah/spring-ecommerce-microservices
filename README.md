@@ -115,45 +115,10 @@ cd order && ./mvnw spring-boot:run
 
 ---
 
-## ✅ What’s been fixed/added in this iteration
-- Order module completed with missing pieces:
-  - PaymentMethod enum
-  - CustomerResponse DTO and CustomerClient (HTTP via RestTemplate)
-  - PaymentRequest and PaymentClient (resilient no-op if payment svc unavailable)
-  - AppConfig with RestTemplate bean and JPA auditing enabled
-  - OrderMapper now sets totalAmount from the request
-- Config Server updated to match docker-compose Postgres and correct URLs:
-  - product-service: jdbc:postgresql://localhost:5532/product, username=root, password=password
-  - order-service: jdbc:postgresql://localhost:5532/order, username=root, password=password
-  - order-service product-url corrected to /api/v1/products
-  - discovery-service default-zone corrected to use host:port (http://localhost:8761/eureka)
-
-## 📡 APIs (quick reference)
-- Customer Service base: http://localhost:8090/api/v1/customer
-- Product Service base: http://localhost:8020/api/v1/products
-- Order Service base: http://localhost:8070/api/v1/orders
-
-### Example: Create Product
-curl -X POST http://localhost:8020/api/v1/products \
-  -H 'Content-Type: application/json' \
-  -d '{"name":"Phone","description":"Smartphone","price":499.99,"category":"ELECTRONICS"}'
-
-### Example: Create Customer
-curl -X POST http://localhost:8090/api/v1/customer \
-  -H 'Content-Type: application/json' \
-  -d '{"id":null,"firstName":"John","lastName":"Doe","email":"john@example.com","address":{"street":"1 Main","houseNumber":"10","zipCode":"10001"}}'
-
-### Example: Place Order
-curl -X POST http://localhost:8070/api/v1/orders \
-  -H 'Content-Type: application/json' \
-  -d '{
-        "reference":"ORD-001",
-        "amount":499.99,
-        "paymentMethod":"CREDIT_CARD",
-        "customerId":"<CUSTOMER_ID>",
-        "products":[{"productId":1,"quantity":1.0}]
-      }'
-
-## ⚠️ Notes
-- Kafka is referenced by the Order service for producing order confirmations, but no Kafka broker is included in docker-compose today. You can still run the services and place orders; the PaymentClient handles missing payment service gracefully, and Kafka producer will require you to add Kafka later if you need events.
-- Ensure the two Postgres databases exist (product and order) before starting their services.
+### 🤝 Contributing
+1. Fork the repository
+2. Create a feature branch (git checkout -b feature/amazing-feature)
+3. Commit your changes (git commit -m 'Add some amazing feature')
+4. Push to the branch (git push origin feature/amazing-feature)
+5. Open a Pull Request
+---
