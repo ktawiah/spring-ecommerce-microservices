@@ -1,8 +1,8 @@
 spring:
   datasource:
-    username: postgres
-    password: psql_pass&#l2
-    url: jdbc:postgresql://localhost:5432/order
+    username: root
+    password: password
+    url: jdbc:postgresql://localhost:5532/order
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -16,6 +16,6 @@ server:
 application:
   config:
     customer-url: http://localhost:8090/api/v1/customer
-    product-url: http://localhost:8020/api/v1/product
+    product-url: http://localhost:8020/api/v1/products
     payment-url: http://localhost:8040/api/v1/payments
 
